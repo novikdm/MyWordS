@@ -9,6 +9,7 @@ import java.io.IOException;
 public class MainPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("checkedAnswer", 1);
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
     }
 }

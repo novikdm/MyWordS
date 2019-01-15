@@ -25,12 +25,15 @@
     <div class="page">
         <div class="left_column">Left Column</div>
         <br><hr>
+        <div id="content-wrapper">
         <div class="content">
             <form action="/check" method="post">
-                <input type="text" name="word"><br><br>
+                <input type="text" name="word"><br>
+                <input type="text" name="translate"><br><br>
                 <input type="submit" placeholder="True" value="true" name="true">
                 <input type="submit" placeholder="False" value="false" name="false">
             </form>
+        </div>
         </div>
     </div>
     <hr>
@@ -38,6 +41,23 @@
         <div>(c) Novik</div>
         <div>2019</div>
     </footer>
+<script>
+    let a = document.getElementById("content-wrapper");
+    let b = ${checkedAnswer} == 1 ? 1 : ${checkedAnswer};
+    if(typeof ${checkedAnswer} != "number"){
+        // console.log(b);
+        if(b){
 
+            a.style.background = "green";
+            // a.style.backg
+        }
+        else {
+            a.style.background = "red";
+        }
+    }
+    // a.style.background = "none";
+    setTimeout( function(){ a.style.background = "transparent"} , 1);
+
+</script>
 </body>
 </html>
