@@ -48,11 +48,11 @@
         // console.log(b);
         if(b){
 
-            a.style.background = "green";
+            a.style.background = "rgba(0, 160, 0, 0.1)";
             // a.style.backg
         }
         else {
-            a.style.background = "red";
+            a.style.background = "rgba(160, 0, 0, 0.1)";
         }
     }
     // a.style.background = "none";
