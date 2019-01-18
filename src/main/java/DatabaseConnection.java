@@ -3,14 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseConnection {
-    private String url = "jdbc:mysql://localhost:3306/testddb";
+    private String url = "jdbc:mysql://localhost:3306/testddb?useSSL=false";
     private String login = "root";
     private  String password = "1234";
     private Connection connection;
 
     public DatabaseConnection() throws SQLException, ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("first---------");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        System.out.println("second---------");
         this.connection = DriverManager.getConnection(url, login, password);
+        System.out.println("third---------");
 
     }
     public void save(String word, String translate){
@@ -55,7 +58,17 @@ public class DatabaseConnection {
         return translateList;
     }
 
-//    public wordForCheck
+    public String translateForCheck(String rightTranslate, ArrayList<String> listOfTranslate){
+        String word = "А";
+        if(Math.random()>0.5){
+            int size = listOfTranslate.size();
+            int index = (int) (Math.random() * 3);
+            word = listOfTranslate.get(index);
+        }
+        else word = rightTranslate;
+
+        return word;
+    }
 
 
 }

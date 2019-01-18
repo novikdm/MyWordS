@@ -28,8 +28,8 @@
         <div id="content-wrapper">
         <div class="content">
             <form action="/check" method="post">
-                <input type="text" name="word"><br>
-                <input type="text" name="translate"><br><br>
+                <input type="text" name="word" value="${word.word}"><br>
+                <input type="text" name="translate" value="${translate}"><br><br>
                 <input type="submit" placeholder="True" value="true" name="true">
                 <input type="submit" placeholder="False" value="false" name="false">
             </form>

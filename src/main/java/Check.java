@@ -4,9 +4,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "Check")
 public class Check extends HttpServlet {
+
+    DatabaseConnection databaseConnection = new DatabaseConnection();
+
+    public Check() throws SQLException, ClassNotFoundException {
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String word = request.getParameter("word");
         String translate = request.getParameter("translate");
@@ -15,6 +22,12 @@ public class Check extends HttpServlet {
 
         if(request.getParameter("true") != null && word.equals(translate)) checkedAnswer = true;
         else if(request.getParameter("false") != null && !word.equals(translate)) checkedAnswer = true;
+
+        Word newWord = databaseConnection.getWord("work");
+        String reqTranslate = databaseConnection.translateForCheck(newWord.getTranslate1(), databaseConnection.getTranslate());
+        request.setAttribute("word", newWord);
+        request.setAttribute("translate", reqTranslate);
+
 
 //        if(request.getParameter("true") != null){
 //            System.out.println("True");
