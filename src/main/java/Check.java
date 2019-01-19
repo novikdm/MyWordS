@@ -15,15 +15,17 @@ public class Check extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String word = request.getParameter("word");
+        Word word = databaseConnection.getWord(request.getParameter("word"));
         String translate = request.getParameter("translate");
+        System.out.println(translate);
+        System.out.println(word.getWord());
         boolean checkedAnswer = false;
 
 
-        if(request.getParameter("true") != null && word.equals(translate)) checkedAnswer = true;
-        else if(request.getParameter("false") != null && !word.equals(translate)) checkedAnswer = true;
+        if(request.getParameter("true") != null && word.getTranslate1().equals(translate)) checkedAnswer = true;
+        else if(request.getParameter("false") != null && !word.getTranslate1().equals(translate)) checkedAnswer = true;
 
-        Word newWord = databaseConnection.getWord("work");
+        Word newWord = databaseConnection.getWord(databaseConnection.newWord());
         String reqTranslate = databaseConnection.translateForCheck(newWord.getTranslate1(), databaseConnection.getTranslate());
         request.setAttribute("word", newWord);
         request.setAttribute("translate", reqTranslate);

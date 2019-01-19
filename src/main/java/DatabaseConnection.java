@@ -1,3 +1,5 @@
+
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +11,13 @@ public class DatabaseConnection {
     private Connection connection;
 
     public DatabaseConnection() throws SQLException, ClassNotFoundException {
-        System.out.println("first---------");
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        System.out.println("second---------");
+        Class.forName("com.mysql.jdbc.Driver");
         this.connection = DriverManager.getConnection(url, login, password);
-        System.out.println("third---------");
-
     }
     public void save(String word, String translate){
         System.out.println("Error");
     }
+
     public Word getWord(String word){
         List<Word> wordList = new ArrayList<Word>();
         String sqlFindWord = "select * from words where word like '" + word + "';";
@@ -42,32 +41,42 @@ public class DatabaseConnection {
     }
 
     public ArrayList<String> getTranslate(){
-        ArrayList<String> translateList = new ArrayList<String>();
         String sqlFindWord = "select translate1 from words";
-        try {
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlFindWord);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                String translate1 = resultSet.getString(1);
-                translateList.add(translate1);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ArrayList<String> translateList = getListFromSqlQuery(sqlFindWord);
         return translateList;
     }
 
     public String translateForCheck(String rightTranslate, ArrayList<String> listOfTranslate){
         String word = "А";
-        if(Math.random()>0.5){
+        if(Math.random()>0.3){
             int size = listOfTranslate.size();
-            int index = (int) (Math.random() * 3);
+            int index = (int) (Math.random() * size);
             word = listOfTranslate.get(index);
         }
         else word = rightTranslate;
 
         return word;
+    }
+
+    public String newWord(){
+        String sqlquery = "select word from words";
+        ArrayList<String> wordList = getListFromSqlQuery(sqlquery);
+        return wordList.get((int)(Math.random() * wordList.size()));
+    }
+
+    private ArrayList<String> getListFromSqlQuery(String sqlquery){
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlquery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String wordFromResultSet = resultSet.getString(1);
+                list.add(wordFromResultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 
