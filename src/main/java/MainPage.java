@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+
 @WebServlet(name = "MainPage")
 public class MainPage extends HttpServlet {
+
 
     DatabaseConnection databaseConnection = new DatabaseConnection();
 
@@ -15,7 +17,7 @@ public class MainPage extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         Word word = databaseConnection.getWord(databaseConnection.newWord());
         String reqTranslate = databaseConnection.translateForCheck(word.getTranslate1(), databaseConnection.getTranslate());
         request.setAttribute("word", word);

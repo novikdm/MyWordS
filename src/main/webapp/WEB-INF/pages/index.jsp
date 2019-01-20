@@ -5,9 +5,10 @@
   Time: 14:08
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>
 <body>
@@ -30,8 +31,13 @@
             <form action="/check" method="post">
                 <input type="text" name="word" value="${word.word}"><br>
                 <input type="text" name="translate" value="${translate}"><br><br>
-                <input type="submit" placeholder="True" value="true" name="true">
-                <input type="submit" placeholder="False" value="false" name="false">
+                <input type="submit"  value="true" name="true">
+                <input type="submit"  value="false" name="false">
+            </form>
+            <hr>
+            <form action="/addNewWord" method="post">
+                <input type="text" name="word"><br>
+                <input type="submit">
             </form>
         </div>
         </div>
