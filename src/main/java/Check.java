@@ -18,8 +18,6 @@ public class Check extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         Word word = databaseConnection.getWord(request.getParameter("word"));
         String translate = request.getParameter("translate");
-        System.out.println(translate);
-        System.out.println(word.getWord());
         boolean checkedAnswer = false;
 
 

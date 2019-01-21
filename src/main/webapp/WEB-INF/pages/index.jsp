@@ -36,7 +36,7 @@
             </form>
             <hr>
             <form action="/addNewWord" method="post">
-                <input type="text" name="word"><br>
+                <input type="text" name="nword"><br>
                 <input type="submit">
             </form>
         </div>

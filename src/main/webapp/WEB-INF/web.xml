@@ -23,14 +23,14 @@
         <url-pattern>/check</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet>-->
-        <!--<servlet-name>AddNewWord</servlet-name>-->
-        <!--<servlet-class>Check</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>AddNewWord</servlet-name>-->
-        <!--<url-pattern>/addNewWord</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>AddNewWord</servlet-name>
+        <servlet-class>AddWord</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewWord</servlet-name>
+        <url-pattern>/addNewWord</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>
