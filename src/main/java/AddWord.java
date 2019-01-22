@@ -28,7 +28,7 @@ public class AddWord extends HttpServlet {
         System.out.println(translatedWord);
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
 
-    }
+    }//не выходит, пока перевод(((
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
