@@ -2,7 +2,9 @@
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseConnection {
     private String url = "jdbc:mysql://localhost:3306/testddb?useSSL=false";
@@ -77,6 +79,40 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public HashMap<Word, String> getNewTenWordsForCheck(int quantityOfwords){
+        HashMap<Word, String> newTenWordsForCheck = new HashMap<Word, String>();
+        ArrayList<Word> wordArray = new ArrayList<Word>();
+        String sqlQueryDBSize = "select Count(ID) from words";
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQueryDBSize);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            String sqlQueryGetWords = "select * from words where ";
+            int sizeOfDB = resultSet.getInt(1);
+            for(int i = 0; i<quantityOfwords; i++){
+                int x = (int)Math.random()*sizeOfDB;
+                sqlQueryGetWords = sqlQueryGetWords + "id=" + x;
+                if(i<quantityOfwords-1) sqlQueryGetWords = sqlQueryGetWords + "or";
+            }
+            PreparedStatement preparedStatementNew = this.connection.prepareStatement(sqlQueryGetWords);
+            resultSet = preparedStatementNew.executeQuery();
+            while (resultSet.next()){
+                wordArray.add(new Word(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(!wordArray.isEmpty()){
+            for (int i =0; i<quantityOfwords; i++){
+
+            }
+        }
+
+
+
+
+        return newTenWordsForCheck;
     }
 
 
