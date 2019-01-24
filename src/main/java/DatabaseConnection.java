@@ -82,35 +82,78 @@ public class DatabaseConnection {
     }
 
     public HashMap<Word, String> getNewTenWordsForCheck(int quantityOfwords){
-        HashMap<Word, String> newTenWordsForCheck = new HashMap<Word, String>();
+        HashMap<Word, String> newTenWordsForCheck = null;
         ArrayList<Word> wordArray = new ArrayList<Word>();
-        String sqlQueryDBSize = "select Count(ID) from words";
-        try {
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQueryDBSize);
+        ArrayList<String> translates = new ArrayList<String>();
+        String sqlquery = "select * from words";
+
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlquery);
             ResultSet resultSet = preparedStatement.executeQuery();
-            String sqlQueryGetWords = "select * from words where ";
-            int sizeOfDB = resultSet.getInt(1);
-            for(int i = 0; i<quantityOfwords; i++){
-                int x = (int)Math.random()*sizeOfDB;
-                sqlQueryGetWords = sqlQueryGetWords + "id=" + x;
-                if(i<quantityOfwords-1) sqlQueryGetWords = sqlQueryGetWords + "or";
+            while(resultSet.next()){
+                wordArray.add(new Word(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4)
+                ));
             }
-            PreparedStatement preparedStatementNew = this.connection.prepareStatement(sqlQueryGetWords);
-            resultSet = preparedStatementNew.executeQuery();
-            while (resultSet.next()){
-                wordArray.add(new Word(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
-            }
-        } catch (SQLException e) {
+        }
+
+//        try {
+//            String sqlQueryDBSize = "select Count(ID) from words";
+//            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQueryDBSize);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            String sqlQueryGetWords = "select * from words where ";
+//            String sqlQueryGetTranslate = "select translate1 from words where ";
+//            int sizeOfDB = resultSet.getInt(1);
+//            for(int i = 0; i<quantityOfwords; i++){
+//                int x = (int)(Math.random()*sizeOfDB);
+//                int y = (int)(Math.random()*sizeOfDB);
+//                sqlQueryGetWords = sqlQueryGetWords + "id=" + x;
+//                sqlQueryGetTranslate = sqlQueryGetTranslate + "id=" + x;
+//                if(i<quantityOfwords) {
+//                    sqlQueryGetWords = sqlQueryGetWords + "or";
+//                    sqlQueryGetTranslate = sqlQueryGetTranslate + "or";
+//                }
+//            }
+//            PreparedStatement preparedStatementNew = this.connection.prepareStatement(sqlQueryGetWords);
+//            ResultSet resultSet2 = preparedStatementNew.executeQuery();
+//            while (resultSet2.next()){
+//                wordArray.add(new Word(
+//                        resultSet2.getInt(1),
+//                        resultSet2.getString(2),
+//                        resultSet2.getString(3),
+//                        resultSet2.getString(4)
+//                ));
+//            }
+//            PreparedStatement prepared = this.connection.prepareStatement(sqlQueryGetTranslate);
+//            ResultSet resultSet3 = prepared.executeQuery();
+//            while (resultSet3.next()){
+//                translates.add(resultSet3.getString(1));
+//            }
+//
+//        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
-        if(!wordArray.isEmpty()){
-            for (int i =0; i<quantityOfwords; i++){
 
+//        if(!wordArray.isEmpty() && !translates.isEmpty()){
+//            newTenWordsForCheck = new HashMap<Word, String>();
+//            for (int i =0; i<quantityOfwords; i++){
+//                newTenWordsForCheck.put(wordArray.get(i), translates.get(i));
+//            }
+//        }
+
+        if(!wordArray.isEmpty()){
+            System.out.println(wordArray);
+            newTenWordsForCheck = new HashMap<Word, String>();
+            for (int i =0; i<quantityOfwords; i++){
+                int x = (int)(Math.random()*wordArray.size());
+                int y = (int)(Math.random()*wordArray.size());
+                newTenWordsForCheck.put(wordArray.get(x), wordArray.get(y).getTranslate1());
             }
         }
-
-
-
 
         return newTenWordsForCheck;
     }

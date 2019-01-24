@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 
 @WebServlet(name = "MainPage")
@@ -24,6 +25,12 @@ public class MainPage extends HttpServlet {
         request.setAttribute("translate", reqTranslate);
 
         request.setAttribute("checkedAnswer", 1);
+
+        HashMap map = databaseConnection.getNewTenWordsForCheck(3);
+        System.out.println("MAAAAAAAAAAAP:---------");
+        System.out.println(map);
+        System.out.println("---------------------");
+        request.setAttribute("maps", map);
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
     }
 }

@@ -39,6 +39,20 @@
                 <input type="text" name="nword"><br>
                 <input type="submit">
             </form>
+            <hr>
+            <br>
+            <div>
+                ${maps}
+            </div>
+            <hr>
+            <div>
+                ${maps.values}
+                <ul>
+                    <c:ForEach items="${maps}" var="x">
+                        <li>${x}</li>
+                    </c:ForEach>
+                </ul>
+            </div>
         </div>
         </div>
     </div>
