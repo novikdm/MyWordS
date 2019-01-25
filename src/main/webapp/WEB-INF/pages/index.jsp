@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%--
   Created by IntelliJ IDEA.
   User: Casper
@@ -34,23 +36,32 @@
                 <input type="submit"  value="true" name="true">
                 <input type="submit"  value="false" name="false">
             </form>
-            <hr>
-            <form action="/addNewWord" method="post">
-                <input type="text" name="nword"><br>
-                <input type="submit">
-            </form>
+            <%--<hr>--%>
+            <%--<form action="/addNewWord" method="post">--%>
+                <%--<input type="text" name="nword"><br>--%>
+                <%--<input type="submit">--%>
+            <%--</form>--%>
             <hr>
             <br>
-            <div>
-                ${maps}
+            <div class="check">
+                <form action="/" method="get">
+                    <input type="text" id="checkedtext"><br>
+                    <input type="text" id="checkedtranslate"><br>
+                    <br>
+                    <button id="true">True</button>
+                    <button id="false">False</button>
+                </form>
+
+
             </div>
             <hr>
+
             <div>
-                ${maps.values}
+
                 <ul>
-                    <c:ForEach items="${maps}" var="x">
-                        <li>${x}</li>
-                    </c:ForEach>
+                    <c:forEach items="${listOfWords}" var="x">
+                        <li>${x.getWord().getWord()} + ${x.getWord().getTranslate1()} + ${x.getTranslateForCheck()}</li>
+                    </c:forEach>
                 </ul>
             </div>
         </div>
@@ -79,5 +90,70 @@
     setTimeout( function(){ a.style.background = "transparent"} , 1);
 
 </script>
+    <script>
+        Window.sessionStorage.setItem('True', '0');
+        Window.sessionStorage.setItem('False', '0');
+        Window.sessionStorage.setItem('Step', '0');
+        let size = ${listOfWords.size()};
+
+        <%--<c:forEach items="${listOfWords}" var="x">--%>
+
+            <%--Window.sessionStorage.setItem(i, );--%>
+
+
+
+        <%--${x.getWord().getWord()};--%>
+        <%--${x.getWord().getTranslate1()} ;--%>
+        <%--${x.getTranslateForCheck()};--%>
+        <%--</c:forEach>--%>
+
+        // function check(){
+        //
+        // }
+        document.getElementById("true").onclick = function(){
+            let i = + Window.sessionStorage.getItem('Step');
+            if(i<size){
+                let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};
+                let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};
+                if(rightTranslate === checkedTranslate){
+                    let x = + Window.sessionStorage.getItem('True');
+                    x++;
+                    x += "";
+                    Window.sessionStorage.setItem('True', x);
+                }
+                else{
+                    let x = + Window.sessionStorage.getItem('False');
+                    x++;
+                    x += "";
+                    Window.sessionStorage.setItem('False', x);
+                }
+                i++;
+                i += i
+                Window.sessionStorage.setItem('Step', i);
+            }
+        }
+        document.getElementById("false").onclick = function(){
+            let i = + Window.sessionStorage.getItem('Step');
+            if(i<size){
+                let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};
+                let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};
+                if(rightTranslate != checkedTranslate){
+                    let x = + Window.sessionStorage.getItem('True');
+                    x++;
+                    x += "";
+                    Window.sessionStorage.setItem('True', x);
+                }
+                else{
+                    let x = + Window.sessionStorage.getItem('False');
+                    x++;
+                    x += "";
+                    Window.sessionStorage.setItem('False', x);
+                }
+                i++;
+                i += i
+                Window.sessionStorage.setItem('Step', i);
+            }
+        }
+    </script>
 </body>
 </html>

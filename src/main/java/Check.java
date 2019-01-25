@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "Check")
 public class Check extends HttpServlet {
@@ -52,6 +53,8 @@ public class Check extends HttpServlet {
 //
 
 
+//        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(3);
+//        request.setAttribute("listOfWords", listOfWords);
 
         request.setAttribute("checkedAnswer", checkedAnswer);
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);

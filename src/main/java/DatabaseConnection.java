@@ -81,8 +81,13 @@ public class DatabaseConnection {
         return list;
     }
 
-    public HashMap<Word, String> getNewTenWordsForCheck(int quantityOfwords){
-        HashMap<Word, String> newTenWordsForCheck = null;
+
+
+//    --------------------------------------------------
+
+    public ArrayList<WordAndTranslate> getNewTenWordsForCheck(int quantityOfwords){
+//        HashMap<Word, String> newTenWordsForCheck = null;
+        ArrayList<WordAndTranslate> newTenWordsForCheck = null;
         ArrayList<Word> wordArray = new ArrayList<Word>();
         ArrayList<String> translates = new ArrayList<String>();
         String sqlquery = "select * from words";
@@ -147,11 +152,18 @@ public class DatabaseConnection {
 
         if(!wordArray.isEmpty()){
             System.out.println(wordArray);
-            newTenWordsForCheck = new HashMap<Word, String>();
+//            newTenWordsForCheck = new HashMap<Word, String>();
+            newTenWordsForCheck = new ArrayList<WordAndTranslate>();
             for (int i =0; i<quantityOfwords; i++){
                 int x = (int)(Math.random()*wordArray.size());
                 int y = (int)(Math.random()*wordArray.size());
-                newTenWordsForCheck.put(wordArray.get(x), wordArray.get(y).getTranslate1());
+                newTenWordsForCheck.
+                        add(
+                                new WordAndTranslate(
+                                        wordArray.get(x),
+                                        wordArray.get(y).getTranslate1()
+                                )
+                        );
             }
         }
 
