@@ -1,6 +1,6 @@
 
 public class Word {
-    int id;
+    private int id;
     private String word;
     private String translate1;
     private String translate2;
@@ -40,6 +40,14 @@ public class Word {
 
     public void setTranslate2(String translate2) {
         this.translate2 = translate2;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

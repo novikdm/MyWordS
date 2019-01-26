@@ -24,11 +24,16 @@ public class MainPage extends HttpServlet {
         String reqTranslate = databaseConnection.translateForCheck(word.getTranslate1(), databaseConnection.getTranslate());
         request.setAttribute("word", word);
         request.setAttribute("translate", reqTranslate);
-
         request.setAttribute("checkedAnswer", 1);
 
-        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(3);
+        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
         request.setAttribute("listOfWords", listOfWords);
+
+//        {
+//            WordAndTranslate wordAndTranslate = listOfWords.get(0);
+//
+//        }
+
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
     }
 }

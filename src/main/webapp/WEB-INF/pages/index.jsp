@@ -43,24 +43,31 @@
             <%--</form>--%>
             <hr>
             <br>
-            <div class="check">
+            <div id="check">
+                <input type="text" id="trueCounter" value="">
+                <input type="text" id="falseCounter">
                 <form action="/" method="get">
                     <input type="text" id="checkedtext"><br>
                     <input type="text" id="checkedtranslate"><br>
                     <br>
-                    <button id="true">True</button>
-                    <button id="false">False</button>
+                    <div id="trueContainer">
+                        <input id="true" type="button" value="True">
+                    </div>
+                    <div id="falseContainer">
+                        <input id="false" type="button" value="False">
+                    </div>
+                    <%--<button id="true" >True</button>--%>
+                    <%--<button id="false">False</button>--%>
                 </form>
-
-
             </div>
+            <br>
             <hr>
 
             <div>
 
                 <ul>
                     <c:forEach items="${listOfWords}" var="x">
-                        <li>${x.getWord().getWord()} + ${x.getWord().getTranslate1()} + ${x.getTranslateForCheck()}</li>
+                        <li>${x.getWord()} + ${x.getTranslate1()} + ${x.getTranslateForCheck()}</li>
                     </c:forEach>
                 </ul>
             </div>
@@ -72,86 +79,181 @@
         <div>(c) Novik</div>
         <div>2019</div>
     </footer>
-<script>
-    let a = document.getElementById("content-wrapper");
-    let b = ${checkedAnswer} == 1 ? 1 : ${checkedAnswer};
-    if(typeof ${checkedAnswer} != "number"){
-        // console.log(b);
-        if(b){
-
-            a.style.background = "rgba(0, 160, 0, 0.1)";
-            // a.style.backg
-        }
-        else {
-            a.style.background = "rgba(160, 0, 0, 0.1)";
-        }
-    }
-    // a.style.background = "none";
-    setTimeout( function(){ a.style.background = "transparent"} , 1);
-
-</script>
     <script>
-        Window.sessionStorage.setItem('True', '0');
-        Window.sessionStorage.setItem('False', '0');
-        Window.sessionStorage.setItem('Step', '0');
+        let a = document.getElementById("content-wrapper");
+        let b = ${checkedAnswer} == 1 ? 1 : ${checkedAnswer};
+        if(typeof ${checkedAnswer} != "number"){
+            if(b){
+                a.style.background = "rgba(0, 160, 0, 0.1)";
+            }
+            else {
+                a.style.background = "rgba(160, 0, 0, 0.1)";
+            }
+        }
+    setTimeout( function(){ a.style.background = "transparent"} , 1);
+    </script>
+
+
+
+    <script>
+
+        if(sessionStorage.getItem('True')==null && sessionStorage.getItem('false')==null){
+            sessionStorage.setItem('True', '0');
+            sessionStorage.setItem('False', '0');
+        }
+        sessionStorage.setItem('Step', '0');
         let size = ${listOfWords.size()};
+        document.getElementById('trueCounter').setAttribute(
+            'value',
+            'True: ' + sessionStorage.getItem('True')
+        );
+        document.getElementById("falseCounter").setAttribute(
+            'value',
+            'False: ' + sessionStorage.getItem('False')
+        );
+        document.getElementById('trueContainer').style.width = '50px';
+        document.getElementById('falseContainer').style.width = '50px';
+
 
         <%--<c:forEach items="${listOfWords}" var="x">--%>
-
             <%--Window.sessionStorage.setItem(i, );--%>
-
-
-
         <%--${x.getWord().getWord()};--%>
         <%--${x.getWord().getTranslate1()} ;--%>
         <%--${x.getTranslateForCheck()};--%>
         <%--</c:forEach>--%>
-
         // function check(){
         //
         // }
+
+        //-----------------------------
+
+
         document.getElementById("true").onclick = function(){
-            let i = + Window.sessionStorage.getItem('Step');
+            let i = + sessionStorage.getItem('Step');
             if(i<size){
-                let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};
-                let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};
-                if(rightTranslate === checkedTranslate){
-                    let x = + Window.sessionStorage.getItem('True');
-                    x++;
-                    x += "";
-                    Window.sessionStorage.setItem('True', x);
-                }
-                else{
-                    let x = + Window.sessionStorage.getItem('False');
-                    x++;
-                    x += "";
-                    Window.sessionStorage.setItem('False', x);
-                }
+                <%--console.log("---1---");--%>
+                <%--console.log(${listOfWords.get(i).getWord().getTranslate1()});--%>
+                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
+                <%--console.log(rightTranslate);--%>
+                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
+                <%--console.log("---2---");--%>
+
+                let trigger = Math.random()>0.5 ? true : false;
+
+                changeSessionStorage(trigger);
                 i++;
-                i += i
-                Window.sessionStorage.setItem('Step', i);
+                sessionStorage.setItem('Step', i);
             }
+            if(i===(size)){
+                changeButton('true');
+            }
+            document.getElementById("checkedtext").setAttribute('value', ${listOfWords.get(i).getWord()});
         }
-        document.getElementById("false").onclick = function(){
-            let i = + Window.sessionStorage.getItem('Step');
-            if(i<size){
-                let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};
-                let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};
-                if(rightTranslate != checkedTranslate){
-                    let x = + Window.sessionStorage.getItem('True');
-                    x++;
-                    x += "";
-                    Window.sessionStorage.setItem('True', x);
-                }
-                else{
-                    let x = + Window.sessionStorage.getItem('False');
-                    x++;
-                    x += "";
-                    Window.sessionStorage.setItem('False', x);
-                }
-                i++;
-                i += i
-                Window.sessionStorage.setItem('Step', i);
+
+
+        //-----------------------------------
+
+        <%--console.log(--%>
+            <%--JSON.stringify(--%>
+                <%--{--%>
+                    <%--${listOfWords.get(0)}--%>
+                <%--}--%>
+            <%--)--%>
+        <%--);--%>
+        <%--let str = String(${listOfWords.get(0).getTranslateForCheck()});--%>
+        <%--console.log(str);--%>
+        <%--let obj = {--%>
+            <%--'word' : ${listOfWords.get(0).getWord().getWord()},--%>
+            <%--'translates' : [--%>
+                <%--${listOfWords.get(0).getWord().getTranslate1()},--%>
+                <%--${listOfWords.get(0).getWord().getTranslate2()},--%>
+            <%--],--%>
+            <%--'checkTranslate' : ${listOfWords.get(0).getTranslateForCheck()}--%>
+        <%--};--%>
+        <%--console.log(obj);--%>
+
+        <%--document.getElementById("true").onclick = function(){--%>
+            <%--let i = + sessionStorage.getItem('Step');--%>
+            <%--console.log("i= " + i);--%>
+            <%--if(i<size){--%>
+                <%--console.log("---1---");--%>
+                <%--console.log(${listOfWords.get(i).getWord().getTranslate1()});--%>
+                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
+                <%--console.log(rightTranslate);--%>
+                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
+                <%--console.log("---2---");--%>
+                <%--if(rightTranslate === checkedTranslate){--%>
+                    <%--console.log("---3---");--%>
+                    <%--let x = + sessionStorage.getItem('True');--%>
+                    <%--x++;--%>
+                    <%--x += "";--%>
+                    <%--sessionStorage.setItem('True', x);--%>
+                <%--}--%>
+                <%--else{ console.log("---4---");--%>
+                    <%--let x = + sessionStorage.getItem('False');--%>
+                    <%--x++;--%>
+                    <%--x += "";--%>
+                    <%--sessionStorage.setItem('False', x);--%>
+                <%--}--%>
+                <%--console.log("---5---");--%>
+                <%--i++;--%>
+                <%--i += i--%>
+                <%--sessionStorage.setItem('Step', i);--%>
+            <%--}--%>
+        <%--}--%>
+        <%--document.getElementById("false").onclick = function(){--%>
+            <%--let i = + sessionStorage.getItem('Step');--%>
+            <%--if(i<size){--%>
+                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
+                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
+                <%--if(rightTranslate != checkedTranslate){--%>
+                    <%--let x = + sessionStorage.getItem('True');--%>
+                    <%--x++;--%>
+                    <%--x += "";--%>
+                    <%--sessionStorage.setItem('True', x);--%>
+                <%--}--%>
+                <%--else{--%>
+                    <%--let x = + sessionStorage.getItem('False');--%>
+                    <%--x++;--%>
+                    <%--x += "";--%>
+                    <%--sessionStorage.setItem('False', x);--%>
+                <%--}--%>
+                <%--i++;--%>
+                <%--i += i--%>
+                <%--sessionStorage.setItem('Step', i);--%>
+            <%--}--%>
+        <%--}--%>
+
+        function changeButton(trueOrFalse) {
+            let tr = document.getElementById(trueOrFalse);
+            let el = document.createElement('input');
+            let str = trueOrFalse==="true" ? 'True' : 'False';
+            let id = trueOrFalse + "Container";
+            el.setAttribute('type', 'submit');
+            el.setAttribute('value',  str);
+            document.getElementById(id).appendChild(el);
+            tr.remove();
+            el.click();
+        }
+
+        function changeSessionStorage(rezultOfCheck) {
+            if(rezultOfCheck){
+                let x = + sessionStorage.getItem('True');
+                x++;
+                sessionStorage.setItem('True', x);
+                document.getElementById('trueCounter').setAttribute(
+                    'value',
+                    'True: ' + sessionStorage.getItem('True')
+                );
+            }
+            else{
+                let x = + sessionStorage.getItem('False');
+                x++;
+                sessionStorage.setItem('False', x);
+                document.getElementById("falseCounter").setAttribute(
+                    'value',
+                    'False: ' + sessionStorage.getItem('False')
+                );
             }
         }
     </script>

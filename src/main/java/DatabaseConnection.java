@@ -151,7 +151,6 @@ public class DatabaseConnection {
 //        }
 
         if(!wordArray.isEmpty()){
-            System.out.println(wordArray);
 //            newTenWordsForCheck = new HashMap<Word, String>();
             newTenWordsForCheck = new ArrayList<WordAndTranslate>();
             for (int i =0; i<quantityOfwords; i++){
