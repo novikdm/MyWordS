@@ -8,9 +8,50 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
+    <style>
+        input {
+            border : 1px solid lightgrey;
+            margin: 1px;
+            padding: 2px;
+        }
+        #check {
+            width: 200px;
+            text-align: center;
+            background: #fafafa;
+        }
+        #trueCounter, #falseCounter {
+            width: 50%;
+            border: 0px;
+            margin: 0;
+        }
+        #trueCounter {
+            float: left;
+        }
+        #falseCounter {
+            float: right;
+            text-align: right;
+        }
+        #checkedtext, #checkedtranslate {
+            height: 30px;
+        }
+        #true, #false{
+            width: 49%;
+            height: 30px;
+
+        }
+        #true{
+            float: left;
+        }
+        #false{
+
+            float: right;
+        }
+
+    </style>
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>
 <body>
@@ -44,7 +85,7 @@
             <hr>
             <br>
             <div id="check">
-                <input type="text" id="trueCounter" value="">
+                <input type="text" id="trueCounter">
                 <input type="text" id="falseCounter">
                 <form action="/" method="get">
                     <input type="text" id="checkedtext"><br>
@@ -105,14 +146,13 @@
         let size = ${listOfWords.size()};
         document.getElementById('trueCounter').setAttribute(
             'value',
-            'True: ' + sessionStorage.getItem('True')
+            'True ' + sessionStorage.getItem('True')
         );
         document.getElementById("falseCounter").setAttribute(
             'value',
-            'False: ' + sessionStorage.getItem('False')
+            sessionStorage.getItem('False') + ' False'
         );
-        document.getElementById('trueContainer').style.width = '50px';
-        document.getElementById('falseContainer').style.width = '50px';
+
 
 
         <%--<c:forEach items="${listOfWords}" var="x">--%>
@@ -243,7 +283,7 @@
                 sessionStorage.setItem('True', x);
                 document.getElementById('trueCounter').setAttribute(
                     'value',
-                    'True: ' + sessionStorage.getItem('True')
+                    'True ' + sessionStorage.getItem('True')
                 );
             }
             else{
@@ -252,7 +292,7 @@
                 sessionStorage.setItem('False', x);
                 document.getElementById("falseCounter").setAttribute(
                     'value',
-                    'False: ' + sessionStorage.getItem('False')
+                    sessionStorage.getItem('False') + ' False'
                 );
             }
         }
