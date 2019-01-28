@@ -71,19 +71,12 @@
         <br><hr>
         <div id="content-wrapper">
         <div class="content">
-            <form action="/check" method="post">
-                <input type="text" name="word" value="${word.word}"><br>
-                <input type="text" name="translate" value="${translate}"><br><br>
-                <input type="submit"  value="true" name="true">
-                <input type="submit"  value="false" name="false">
-            </form>
-            <%--<hr>--%>
-            <%--<form action="/addNewWord" method="post">--%>
-                <%--<input type="text" name="nword"><br>--%>
-                <%--<input type="submit">--%>
+            <%--<form action="/check" method="post">--%>
+                <%--<input type="text" name="word" value="${word.word}"><br>--%>
+                <%--<input type="text" name="translate" value="${translate}"><br><br>--%>
+                <%--<input type="submit"  value="true" name="true">--%>
+                <%--<input type="submit"  value="false" name="false">--%>
             <%--</form>--%>
-            <hr>
-            <br>
             <div id="check">
                 <input type="text" id="trueCounter">
                 <input type="text" id="falseCounter">
@@ -97,19 +90,14 @@
                     <div id="falseContainer">
                         <input id="false" type="button" value="False">
                     </div>
-                    <%--<button id="true" >True</button>--%>
-                    <%--<button id="false">False</button>--%>
                 </form>
             </div>
             <br>
             <hr>
 
             <div>
+                <ul id="testList">
 
-                <ul>
-                    <c:forEach items="${listOfWords}" var="x">
-                        <li>${x.getWord()} + ${x.getTranslate1()} + ${x.getTranslateForCheck()}</li>
-                    </c:forEach>
                 </ul>
             </div>
         </div>
@@ -137,13 +125,14 @@
 
 
     <script>
-
         if(sessionStorage.getItem('True')==null && sessionStorage.getItem('false')==null){
             sessionStorage.setItem('True', '0');
             sessionStorage.setItem('False', '0');
         }
         sessionStorage.setItem('Step', '0');
-        let size = ${listOfWords.size()};
+        var arrayOfWords = ${arrayWord};
+        console.log(arrayOfWords);
+        let size = arrayOfWords.length;
         document.getElementById('trueCounter').setAttribute(
             'value',
             'True ' + sessionStorage.getItem('True')
@@ -152,20 +141,20 @@
             'value',
             sessionStorage.getItem('False') + ' False'
         );
-        var arrayOfWords = ${arrayWord};
-        console.log(arrayOfWords[0]);
         document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
         document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[0].translateForCheck);
 
+        //--------------------------------------------------------------------------
+
+        //-------------------------------List For Tests after test need to delete-------------------------------------------
+        for(let i=0; i<arrayOfWords.length ; i++){
+            let li = document.createElement('li');
+            li.textContent = "w: " + arrayOfWords[i].word + "; " + "t: " + arrayOfWords[i].translate1 + "; " + "ct: " + arrayOfWords[i].translateForCheck + "; ";
+            document.getElementById("testList").appendChild(li);
+        }
 
 
-
-
-
-
-
-        //-----------------------------
-
+        //---------------------------------------------------------------------------
 
         document.getElementById("true").onclick = function(){
             let step = + sessionStorage.getItem('Step');
@@ -192,8 +181,7 @@
             }
         }
 
-
-        //-----------------------------------
+        //-----------------------------------------------------------------------
 
         function changeButton(trueOrFalse) {
             let tr = document.getElementById(trueOrFalse);
@@ -236,6 +224,7 @@
             if(translate1 != translateForCheck && translate2 != translateForCheck) rezult = false;
             return rezult;
         }
+
         function changeInputs(step) {
             if(step !== size){
                 document.getElementById("checkedtext").setAttribute("value", arrayOfWords[step].word);

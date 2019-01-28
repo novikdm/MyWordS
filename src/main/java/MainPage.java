@@ -32,30 +32,15 @@ public class MainPage extends HttpServlet {
         request.setAttribute("checkedAnswer", 1);
 
         ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
-        request.setAttribute("listOfWords", listOfWords);
-
 
         JSONArray jsonArrayOfWords = new JSONArray();
         for (WordAndTranslate wt:
              listOfWords) {
             JSONObject obj = new JSONObject(wt);
-
             jsonArrayOfWords.put(obj);
         }
 
         request.setAttribute("arrayWord", jsonArrayOfWords);
-
-        System.out.println(jsonArrayOfWords);
-
-
-
-
-
-//        {
-//            WordAndTranslate wordAndTranslate = listOfWords.get(0);
-//
-//        }
-
 
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
     }
