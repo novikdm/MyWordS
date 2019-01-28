@@ -152,117 +152,48 @@
             'value',
             sessionStorage.getItem('False') + ' False'
         );
+        var arrayOfWords = ${arrayWord};
+        console.log(arrayOfWords[0]);
+        document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
+        document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[0].translateForCheck);
 
 
 
-        <%--<c:forEach items="${listOfWords}" var="x">--%>
-            <%--Window.sessionStorage.setItem(i, );--%>
-        <%--${x.getWord().getWord()};--%>
-        <%--${x.getWord().getTranslate1()} ;--%>
-        <%--${x.getTranslateForCheck()};--%>
-        <%--</c:forEach>--%>
-        // function check(){
-        //
-        // }
+
+
+
+
 
         //-----------------------------
 
 
         document.getElementById("true").onclick = function(){
-            let i = + sessionStorage.getItem('Step');
-            if(i<size){
-                <%--console.log("---1---");--%>
-                <%--console.log(${listOfWords.get(i).getWord().getTranslate1()});--%>
-                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
-                <%--console.log(rightTranslate);--%>
-                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
-                <%--console.log("---2---");--%>
-
-                let trigger = Math.random()>0.5 ? true : false;
-
-                changeSessionStorage(trigger);
-                i++;
-                sessionStorage.setItem('Step', i);
+            let step = + sessionStorage.getItem('Step');
+            if(step<size){
+                changeSessionStorage(isCorrectTranslate(step));
+                step++;
+                sessionStorage.setItem('Step', step);
+                changeInputs(step);
             }
-            if(i===(size)){
+            if(step===(size)){
                 changeButton('true');
             }
-            document.getElementById("checkedtext").setAttribute('value', ${listOfWords.get(i).getWord()});
+        }
+        document.getElementById("false").onclick = function(){
+            let step = + sessionStorage.getItem('Step');
+            if(step<size){
+                changeSessionStorage(!isCorrectTranslate(step));
+                step++;
+                sessionStorage.setItem('Step', step);
+                changeInputs(step);
+            }
+            if(step===(size)){
+                changeButton('false');
+            }
         }
 
 
         //-----------------------------------
-
-        <%--console.log(--%>
-            <%--JSON.stringify(--%>
-                <%--{--%>
-                    <%--${listOfWords.get(0)}--%>
-                <%--}--%>
-            <%--)--%>
-        <%--);--%>
-        <%--let str = String(${listOfWords.get(0).getTranslateForCheck()});--%>
-        <%--console.log(str);--%>
-        <%--let obj = {--%>
-            <%--'word' : ${listOfWords.get(0).getWord().getWord()},--%>
-            <%--'translates' : [--%>
-                <%--${listOfWords.get(0).getWord().getTranslate1()},--%>
-                <%--${listOfWords.get(0).getWord().getTranslate2()},--%>
-            <%--],--%>
-            <%--'checkTranslate' : ${listOfWords.get(0).getTranslateForCheck()}--%>
-        <%--};--%>
-        <%--console.log(obj);--%>
-
-        <%--document.getElementById("true").onclick = function(){--%>
-            <%--let i = + sessionStorage.getItem('Step');--%>
-            <%--console.log("i= " + i);--%>
-            <%--if(i<size){--%>
-                <%--console.log("---1---");--%>
-                <%--console.log(${listOfWords.get(i).getWord().getTranslate1()});--%>
-                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
-                <%--console.log(rightTranslate);--%>
-                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
-                <%--console.log("---2---");--%>
-                <%--if(rightTranslate === checkedTranslate){--%>
-                    <%--console.log("---3---");--%>
-                    <%--let x = + sessionStorage.getItem('True');--%>
-                    <%--x++;--%>
-                    <%--x += "";--%>
-                    <%--sessionStorage.setItem('True', x);--%>
-                <%--}--%>
-                <%--else{ console.log("---4---");--%>
-                    <%--let x = + sessionStorage.getItem('False');--%>
-                    <%--x++;--%>
-                    <%--x += "";--%>
-                    <%--sessionStorage.setItem('False', x);--%>
-                <%--}--%>
-                <%--console.log("---5---");--%>
-                <%--i++;--%>
-                <%--i += i--%>
-                <%--sessionStorage.setItem('Step', i);--%>
-            <%--}--%>
-        <%--}--%>
-        <%--document.getElementById("false").onclick = function(){--%>
-            <%--let i = + sessionStorage.getItem('Step');--%>
-            <%--if(i<size){--%>
-                <%--let rightTranslate = ${listOfWords.get(i).getWord().getTranslate1()};--%>
-                <%--let checkedTranslate = ${listOfWords.get(i).getTranslateForCheck()};--%>
-                <%--if(rightTranslate != checkedTranslate){--%>
-                    <%--let x = + sessionStorage.getItem('True');--%>
-                    <%--x++;--%>
-                    <%--x += "";--%>
-                    <%--sessionStorage.setItem('True', x);--%>
-                <%--}--%>
-                <%--else{--%>
-                    <%--let x = + sessionStorage.getItem('False');--%>
-                    <%--x++;--%>
-                    <%--x += "";--%>
-                    <%--sessionStorage.setItem('False', x);--%>
-                <%--}--%>
-                <%--i++;--%>
-                <%--i += i--%>
-                <%--sessionStorage.setItem('Step', i);--%>
-            <%--}--%>
-        <%--}--%>
 
         function changeButton(trueOrFalse) {
             let tr = document.getElementById(trueOrFalse);
@@ -294,6 +225,21 @@
                     'value',
                     sessionStorage.getItem('False') + ' False'
                 );
+            }
+        }
+
+        function isCorrectTranslate(step){
+            let rezult = true;
+            let translate1 = arrayOfWords[step].translate1;
+            let translate2 = arrayOfWords[step].translate2;
+            let translateForCheck = arrayOfWords[step].translateForCheck;
+            if(translate1 != translateForCheck && translate2 != translateForCheck) rezult = false;
+            return rezult;
+        }
+        function changeInputs(step) {
+            if(step !== size){
+                document.getElementById("checkedtext").setAttribute("value", arrayOfWords[step].word);
+                document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[step].translateForCheck);
             }
         }
     </script>
