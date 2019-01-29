@@ -131,7 +131,6 @@
         }
         sessionStorage.setItem('Step', '0');
         var arrayOfWords = ${arrayWord};
-        console.log(arrayOfWords);
         let size = arrayOfWords.length;
         document.getElementById('trueCounter').setAttribute(
             'value',
@@ -159,7 +158,6 @@
         document.getElementById("true").onclick = function(){
             let step = + sessionStorage.getItem('Step');
             if(step<size){
-                changeSessionStorage(isCorrectTranslate(step));
                 step++;
                 sessionStorage.setItem('Step', step);
                 changeInputs(step);
@@ -190,6 +188,7 @@
             let id = trueOrFalse + "Container";
             el.setAttribute('type', 'submit');
             el.setAttribute('value',  str);
+            el.setAttribute('id', trueOrFalse);
             document.getElementById(id).appendChild(el);
             tr.remove();
             el.click();
@@ -227,9 +226,21 @@
 
         function changeInputs(step) {
             if(step !== size){
+                getRandomTranslate(arrayOfWords[step]);
                 document.getElementById("checkedtext").setAttribute("value", arrayOfWords[step].word);
                 document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[step].translateForCheck);
             }
+        }
+
+        function getRandomTranslate(wordAndTranslate){
+            let result = wordAndTranslate.translate1;
+            let translate2 = wordAndTranslate.translate2;
+            let x =  Math.random();
+            if(translate2)
+                if (x>0.5){
+                    result = translate2;
+                }
+            return result;
         }
     </script>
 </body>
