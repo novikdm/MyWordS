@@ -119,7 +119,7 @@
                 a.style.background = "rgba(160, 0, 0, 0.1)";
             }
         }
-    setTimeout( function(){ a.style.background = "transparent"} , 1);
+    setTimeout( function(){ a.style.background = "transparent"} , 5);
     </script>
 
 
