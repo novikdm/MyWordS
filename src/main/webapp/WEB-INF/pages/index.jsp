@@ -18,6 +18,19 @@
             margin: 1px;
             padding: 2px;
         }
+        .header{
+            width: 49%;
+            float: left;
+        }
+        #headerlink{
+            width: 110px;
+            background: #fafafa;
+        }
+        a{
+            display: block;
+            text-decoration: none;
+            width: 110px;
+        }
         #check {
             width: 200px;
             text-align: center;
@@ -53,19 +66,15 @@
 </head>
 <body>
 <header>
-    <div>Profile</div>
+    <div class="header">Profile</div>
     <div>MyWordS</div>
-    <div>
-        <form>
-            <button>Login</button>
-            <button>Sign Up</button>
-        </form>
-    </div>
+    <br>
+    <div id="headerlink"><a id="addword" href="/AddNewWord" methods="get">Add New Word</a></div>
 </header>
 <hr>
 <div class="page">
-    <div class="left_column">Left Column</div>
-    <br><hr>
+    <%--<div class="left_column">Left Column</div>--%>
+    <%--<br><hr>--%>
     <div id="content-wrapper">
         <div class="content">
             <%--<form action="/check" method="post">--%>

@@ -29,7 +29,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AddNewWord</servlet-name>
-        <url-pattern>/addNewWord</url-pattern>
+        <url-pattern>/AddNewWord</url-pattern>
     </servlet-mapping>
 
 

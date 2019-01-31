@@ -13,24 +13,28 @@ import java.io.IOException;
 @WebServlet(name = "AddWord")
 public class AddWord extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        System.out.println("first");
-        String newword = request.getParameter("nword");
-        Translate translate = TranslateOptions.getDefaultInstance().getService();
-        System.out.println("second");
-        Translation translation =
-                translate.translate(
-                        newword,
-                        TranslateOption.sourceLanguage("en"),
-                        TranslateOption.targetLanguage("ru"));
-        System.out.println("third");
-        String translatedWord = translation.getTranslatedText();
-        System.out.println(translatedWord);
-        request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+//        request.setCharacterEncoding("UTF-8");
+//        System.out.println("first");
+//        String newword = request.getParameter("nword");
+//        Translate translate = TranslateOptions.getDefaultInstance().getService();
+//        System.out.println("second");
+//        Translation translation =
+//                translate.translate(
+//                        newword,
+//                        TranslateOption.sourceLanguage("en"),
+//                        TranslateOption.targetLanguage("ru"));
+//        System.out.println("third");
+//        String translatedWord = translation.getTranslatedText();
+//        System.out.println(translatedWord);
+//        request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+
+
+
+        request.getRequestDispatcher("/WEB-INF/pages/addWord.jsp").forward(request, response);
 
     }//не выходит, пока перевод(((
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/WEB-INF/pages/addWord.jsp").forward(request, response);
     }
 }
