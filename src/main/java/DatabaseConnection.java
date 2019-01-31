@@ -86,7 +86,6 @@ public class DatabaseConnection {
 //    --------------------------------------------------
 
     public ArrayList<WordAndTranslate> getNewTenWordsForCheck(int quantityOfwords){
-//        HashMap<Word, String> newTenWordsForCheck = null;
         ArrayList<WordAndTranslate> newTenWordsForCheck = null;
         ArrayList<Word> wordArray = new ArrayList<Word>();
         ArrayList<String> translates = new ArrayList<String>();
@@ -117,13 +116,18 @@ public class DatabaseConnection {
                         add(
                                 new WordAndTranslate(
                                         wordArray.get(x),
-                                        y>=z ? wordArray.get(x).getTranslate1() : wordArray.get(y).getTranslate1()
+                                        y>=z ? selectRightTranslate(wordArray.get(x)) : wordArray.get(y).getTranslate1()
                                 )
                         );
             }
         }
 
         return newTenWordsForCheck;
+    }
+    private String selectRightTranslate(Word word){
+        String resultTranslate = word.getTranslate1();
+        if(Math.random()>0.5 && word.getTranslate2() != null) resultTranslate = word.getTranslate2();
+        return resultTranslate;
     }
 
 
