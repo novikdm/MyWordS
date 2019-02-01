@@ -130,5 +130,25 @@ public class DatabaseConnection {
         return resultTranslate;
     }
 
+    public String saveNewWord(Word word) {
+        String result = "Error";
+        String engWord = word.getWord();
+        String translate1 = word.getTranslate1();
+        String translate2 = word.getTranslate2();
+        String sqlQuery = "INSERT INTO testddb.words (word, translate1, translate2) VALUES (?, ?, ?)";
+        try{
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQuery);
+            preparedStatement.setString(1, engWord);
+            preparedStatement.setString(2, translate1);
+            preparedStatement.setString(3, translate2);
+            preparedStatement.executeUpdate();
+            result = "Ok";
+        }
+        catch (SQLException e){
+            System.out.println("Error in SaveNewWord method");
+        }
+        return result;
+    }
+
 
 }
