@@ -73,5 +73,9 @@
 <script>
         document.getElementById("translate2").removeAttribute("disabled");
 </script>
+<script>
+    let x = ${resultOfSaving};
+    console.log(x);
+</script>
 </body>
 </html>
