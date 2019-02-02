@@ -21,28 +21,37 @@ public class AddWord extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("UTF-8");
-//        System.out.println("first");
-//        String newword = request.getParameter("nword");
-//        Translate translate = TranslateOptions.getDefaultInstance().getService();
-//        System.out.println("second");
-//        Translation translation =
-//                translate.translate(
-//                        newword,
-//                        TranslateOption.sourceLanguage("en"),
-//                        TranslateOption.targetLanguage("ru"));
-//        System.out.println("third");
-//        String translatedWord = translation.getTranslatedText();
-//        System.out.println(translatedWord);
-//        request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+
+
+
 
         String word = request.getParameter("word");
         String translate1 = request.getParameter("translate1");
         String translate2 = request.getParameter("translate2");
         Word newWord = new Word(0, word, translate1, translate2);
-
-        JSONObject resultOfSaving = new JSONObject(databaseConnection.saveNewWord(newWord));
+        System.out.println(newWord);
+        String resultOfSavingString = databaseConnection.saveNewWord(newWord);
+        JSONObject resultOfSaving = new JSONObject();
+        resultOfSaving.put("resultOfSaving", resultOfSavingString.equals("Ok") ? true: false);
         request.setAttribute("resultOfSaving", resultOfSaving);
+
+
+//        ---------------------
+//        System.out.println("first");
+//        Translate translate = TranslateOptions.getDefaultInstance().getService();
+//        System.out.println("second");
+//        Translation translation =
+//                translate.translate(
+//                        word,
+//                        TranslateOption.sourceLanguage("en"),
+//                        TranslateOption.targetLanguage("ru"));
+//        System.out.println("third");
+//        String translatedWord = translation.getTranslatedText();
+//        System.out.println(translatedWord);
+//        -----------------------
+
+
         request.getRequestDispatcher("/WEB-INF/pages/addWord.jsp").forward(request, response);
 
     }//не выходит, пока перевод(((

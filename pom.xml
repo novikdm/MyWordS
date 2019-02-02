@@ -52,11 +52,11 @@
         </dependency>
 
         <!--translate dependency-->
-        <!--<dependency>-->
-            <!--<groupId>com.google.cloud</groupId>-->
-            <!--<artifactId>google-cloud-translate</artifactId>-->
-            <!--<version>1.59.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-translate</artifactId>
+            <version>1.60.0</version>
+        </dependency>
     </dependencies>
 
 
