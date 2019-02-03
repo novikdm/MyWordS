@@ -22,19 +22,16 @@ public class MainPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        Word word = databaseConnection.getWord(databaseConnection.newWord());
-        String reqTranslate = databaseConnection.translateForCheck(word.getTranslate1(), databaseConnection.getTranslate());
-        request.setAttribute("word", word);
-        request.setAttribute("translate", reqTranslate);
-        request.setAttribute("checkedAnswer", 1);
 
         ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(3);
-        request.setAttribute("listOfWords", listOfWords);
+        JSONArray jsonArrayOfWords = new JSONArray();
+        for (WordAndTranslate wt:
+                listOfWords) {
+            JSONObject obj = new JSONObject(wt);
 
-//        {
-//            WordAndTranslate wordAndTranslate = listOfWords.get(0);
-//
-//        }
+            jsonArrayOfWords.put(obj);
+        }
+        request.setAttribute("arrayWord", jsonArrayOfWords);
 
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
     }

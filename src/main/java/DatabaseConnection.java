@@ -22,9 +22,10 @@ public class DatabaseConnection {
 
     public Word getWord(String word){
         List<Word> wordList = new ArrayList<Word>();
-        String sqlFindWord = "select * from words where word like '" + word + "';";
+        String sqlFindWord = "select * from words where word like ?";
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sqlFindWord);
+            preparedStatement.setString(1, word);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -135,17 +136,23 @@ public class DatabaseConnection {
         String engWord = word.getWord();
         String translate1 = word.getTranslate1();
         String translate2 = word.getTranslate2();
+        Word newWord = getWord(engWord);
         String sqlQuery = "INSERT INTO testddb.words (word, translate1, translate2) VALUES (?, ?, ?)";
-        try{
-            PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQuery);
-            preparedStatement.setString(1, engWord);
-            preparedStatement.setString(2, translate1);
-            preparedStatement.setString(3, translate2);
-            preparedStatement.executeUpdate();
-            result = "Ok";
+        if(newWord == null){
+            try{
+                PreparedStatement preparedStatement = this.connection.prepareStatement(sqlQuery);
+                preparedStatement.setString(1, engWord);
+                preparedStatement.setString(2, translate1);
+                preparedStatement.setString(3, translate2);
+                preparedStatement.executeUpdate();
+                result = "Word: " + engWord + " save successfully!";
+            }
+            catch (SQLException e){
+                System.out.println("Error in SaveNewWord method");
+            }
         }
-        catch (SQLException e){
-            System.out.println("Error in SaveNewWord method");
+        else{
+            result = "Word: " + engWord + " already exist!";
         }
         return result;
     }

@@ -33,7 +33,7 @@ public class AddWord extends HttpServlet {
         System.out.println(newWord);
         String resultOfSavingString = databaseConnection.saveNewWord(newWord);
         JSONObject resultOfSaving = new JSONObject();
-        resultOfSaving.put("resultOfSaving", resultOfSavingString.equals("Ok") ? true: false);
+        resultOfSaving.put("resultOfSaving", resultOfSavingString);
         request.setAttribute("resultOfSaving", resultOfSaving);
 
 
@@ -57,6 +57,9 @@ public class AddWord extends HttpServlet {
     }//не выходит, пока перевод(((
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        JSONObject resultOfSaving = new JSONObject();
+        resultOfSaving.put("resultOfSaving", false);
+        request.setAttribute("resultOfSaving", resultOfSaving);
         request.getRequestDispatcher("/WEB-INF/pages/addWord.jsp").forward(request, response);
     }
 }

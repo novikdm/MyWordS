@@ -75,7 +75,9 @@
 </script>
 <script>
     let x = ${resultOfSaving};
-    console.log(x);
+    if(x.resultOfSaving){
+        alert(x.resultOfSaving);
+    }
 </script>
 </body>
 </html>
