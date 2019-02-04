@@ -4,7 +4,6 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-
     <servlet>
         <servlet-name>MainPage</servlet-name>
         <servlet-class>MainPage</servlet-class>
@@ -31,6 +30,5 @@
         <servlet-name>AddNewWord</servlet-name>
         <url-pattern>/AddNewWord</url-pattern>
     </servlet-mapping>
-
 
 </web-app>

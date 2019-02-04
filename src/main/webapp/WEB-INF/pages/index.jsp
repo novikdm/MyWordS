@@ -62,6 +62,8 @@
             float: right;
         }
     </style>
+    <c:set var="context" value="${pageContext.request.contextPath}" />
+    <link rel="stylesheet" href="${context}/WEB-INF/css/styles.css"/>
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>
 <body>
@@ -71,6 +73,8 @@
     <br>
     <div id="headerlink"><a id="addword" href="/AddNewWord" methods="get">Add New Word</a></div>
 </header>
+<hr>
+<div><%=request.getContextPath()%></div>
 <hr>
 <div class="page">
     <div id="content-wrapper">
