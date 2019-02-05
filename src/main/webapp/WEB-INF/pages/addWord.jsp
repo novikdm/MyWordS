@@ -12,41 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>
-        input {
-            border : 1px solid lightgrey;
-            margin: 1px;
-            padding: 2px;
-        }
-        .header{
-            width: 49%;
-            float: left;
-        }
-        #headerlink{
-            width: 110px;
-            background: #fafafa;
-        }
-        a{
-            display: block;
-            text-decoration: none;
-            width: 110px;
-        }
-        #addform {
-            width: 200px;
-            text-align: center;
-            background: #fafafa;
-        }
-        #submitContainer {
-            border: 0px;
-            margin: 0;
-        }
-        #word, #translate1, #translate2 {
-            height: 30px;
-        }
-        #translate2{
-
-        }
-    </style>
+    <style><%@include file="/WEB-INF/css/addWordStyles.css"%></style>
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>
 <body>
@@ -71,7 +37,17 @@
 </div>
 
 <script>
-        document.getElementById("translate2").removeAttribute("disabled");
+    function act(event){
+        console.log(event);
+        let x = document.getElementById("translate1").getAttribute('value');
+        console.log(x);
+        x = x===null ? event.key : x+event.key;
+        document.getElementById("translate1").setAttribute('value', event.key);
+        if(x.length >= 3){
+            document.getElementById("translate2").removeAttribute("disabled");
+        }
+    }
+    document.getElementById("translate1").addEventListener("keydown", act);
 </script>
 <script>
     let x = ${resultOfSaving};

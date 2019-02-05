@@ -1,0 +1,33 @@
+input {
+    border : 1px solid lightgrey;
+    margin: 1px;
+    padding: 2px;
+}
+.header{
+    width: 49%;
+    float: left;
+}
+#headerlink{
+    width: 110px;
+    background: #fafafa;
+}
+a{
+    display: block;
+    text-decoration: none;
+    width: 110px;
+}
+#addform {
+    width: 200px;
+    text-align: center;
+    background: #fafafa;
+}
+#submitContainer {
+    border: 0px;
+    margin: 0;
+}
+#word, #translate1, #translate2 {
+    height: 30px;
+}
+#translate2{
+
+}

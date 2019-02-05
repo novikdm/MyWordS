@@ -12,58 +12,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>
-        input {
-            border : 1px solid lightgrey;
-            margin: 1px;
-            padding: 2px;
-        }
-        .header{
-            width: 49%;
-            float: left;
-        }
-        #headerlink{
-            width: 110px;
-            background: #fafafa;
-        }
-        a{
-            display: block;
-            text-decoration: none;
-            width: 110px;
-        }
-        #check {
-            width: 200px;
-            text-align: center;
-            background: #fafafa;
-        }
-        #trueCounter, #falseCounter {
-            width: 50%;
-            border: 0px;
-            margin: 0;
-        }
-        #trueCounter {
-            float: left;
-        }
-        #falseCounter {
-            float: right;
-            text-align: right;
-        }
-        #checkedtext, #checkedtranslate {
-            height: 30px;
-        }
-        #true, #false{
-            width: 49%;
-            height: 30px;
-        }
-        #true{
-            float: left;
-        }
-        #false{
-            float: right;
-        }
-    </style>
-    <c:set var="context" value="${pageContext.request.contextPath}" />
-    <link rel="stylesheet" href="${context}/WEB-INF/css/styles.css"/>
+    <%--<c:set var="context" value="${pageContext.request.contextPath}" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="${context}/css/styles.css"/>--%>
+    <style><%@include file="/WEB-INF/css/indexStyles.css"%></style>
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>
 <body>
@@ -136,7 +87,7 @@
     );
     document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
     document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[0].translateForCheck);
-   
+
 
     //---------------------------------------------------------------------------
     document.getElementById("true").onclick = function(){
