@@ -14,6 +14,7 @@ header, footer{
 }
 header{
     margin: 0;
+    /*padding: 5px;*/
 }
 footer{
     text-align: center;
@@ -23,7 +24,7 @@ footer{
 }
 #header{
     margin-bottom: 5px;
-    pading: 2px;
+    padding: 15px;
 }
 #logo{
     width: 49%;
