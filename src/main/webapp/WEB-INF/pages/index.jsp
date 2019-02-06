@@ -19,14 +19,15 @@
 </head>
 <body>
 <header>
-    <div class="header">Profile</div>
-    <div>MyWordS</div>
-    <br>
-    <div id="headerlink"><a id="addword" href="/AddNewWord" methods="get">Add New Word</a></div>
+    <div id="header">
+        <div id="logo">
+            <a href="/" methods="get">MyWordS</a>
+        </div>
+        <div id="headerlink">
+            <a id="addword" href="/AddNewWord" methods="get">Add New Word</a>
+        </div>
+    </div>
 </header>
-<hr>
-<div><%=request.getContextPath()%></div>
-<hr>
 <div class="page">
     <div id="content-wrapper">
         <div class="content">
@@ -36,7 +37,6 @@
                 <form action="/" method="get">
                     <input type="text" id="checkedtext"><br>
                     <input type="text" id="checkedtranslate"><br>
-                    <br>
                     <div id="trueContainer">
                         <input id="true" type="button" value="True">
                     </div>
@@ -48,26 +48,10 @@
         </div>
     </div>
 </div>
-<hr>
 <footer>
-    <div>(c) Novik</div>
-    <div>2019</div>
+    <div>ⒸNovik 2019
+    </div>
 </footer>
-<%--<script>--%>
-    <%--let a = document.getElementById("content-wrapper");--%>
-    <%--let b = ${checkedAnswer} == 1 ? 1 : ${checkedAnswer};--%>
-    <%--if(typeof ${checkedAnswer} != "number"){--%>
-        <%--if(b){--%>
-            <%--a.style.background = "rgba(0, 160, 0, 0.1)";--%>
-        <%--}--%>
-        <%--else {--%>
-            <%--a.style.background = "rgba(160, 0, 0, 0.1)";--%>
-        <%--}--%>
-    <%--}--%>
-    <%--setTimeout( function(){ a.style.background = "transparent"} , 5);--%>
-<%--</script>--%>
-
-
 
 <script>
     if(sessionStorage.getItem('True')==null && sessionStorage.getItem('false')==null){
@@ -87,8 +71,6 @@
     );
     document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
     document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[0].translateForCheck);
-
-
     //---------------------------------------------------------------------------
     document.getElementById("true").onclick = function(){
         let step = + sessionStorage.getItem('Step');

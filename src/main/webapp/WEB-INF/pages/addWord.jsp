@@ -35,19 +35,13 @@
 
     </form>
 </div>
-
 <script>
     function act(event){
-        console.log(event);
-        let x = document.getElementById("translate1").getAttribute('value');
-        console.log(x);
-        x = x===null ? event.key : x+event.key;
-        document.getElementById("translate1").setAttribute('value', event.key);
-        if(x.length >= 3){
+        if(document.getElementById("translate1").value.length >= 1){
             document.getElementById("translate2").removeAttribute("disabled");
         }
     }
-    document.getElementById("translate1").addEventListener("keydown", act);
+    document.getElementById("translate1").addEventListener("keyup", act);
 </script>
 <script>
     let x = ${resultOfSaving};
