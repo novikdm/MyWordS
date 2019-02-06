@@ -32,11 +32,11 @@
     <div id="content-wrapper">
         <div class="content">
             <div id="check">
-                <input type="text" id="trueCounter">
-                <input type="text" id="falseCounter">
+                <input type="text" id="trueCounter" readonly>
+                <input type="text" id="falseCounter" readonly>
                 <form action="/" method="get">
-                    <input type="text" id="checkedtext"><br>
-                    <input type="text" id="checkedtranslate"><br>
+                    <input type="text" id="checkedtext" readonly><br>
+                    <input type="text" id="checkedtranslate" readonly><br>
                     <div id="trueContainer">
                         <input id="true" type="button" value="True">
                     </div>
@@ -69,6 +69,7 @@
         'value',
         sessionStorage.getItem('False') + ' False'
     );
+    changeWidth()
     document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
     document.getElementById("checkedtranslate").setAttribute("value", arrayOfWords[0].translateForCheck);
     //---------------------------------------------------------------------------
@@ -83,6 +84,7 @@
         if(step===(size)){
             changeButton('true');
         }
+        changeWidth();
     }
     document.getElementById("false").onclick = function(){
         let step = + sessionStorage.getItem('Step');
@@ -95,6 +97,7 @@
         if(step===(size)){
             changeButton('false');
         }
+        changeWidth();
     }
     //-----------------------------------------------------------------------
     function changeButton(trueOrFalse) {
@@ -153,6 +156,23 @@
                 result = translate2;
             }
         return result;
+    }
+    function changeWidth() {
+        let trueCount = + sessionStorage.getItem('True');
+        let falseCount = + sessionStorage.getItem('False');
+        let trueWidthPercent;
+        let falseWidthPercent;
+        if(trueCount !== 0 && falseCount !== 0){
+            let hundredPercent = trueCount + falseCount;
+            trueWidthPercent = ((trueCount*100)/hundredPercent).toFixed();
+            falseWidthPercent = 100 - trueWidthPercent;
+        }
+        else{
+            trueWidthPercent = 50;
+            falseWidthPercent = 50;
+        }
+        document.getElementById('trueCounter').style.width = trueWidthPercent+"%";
+        document.getElementById('falseCounter').style.width = falseWidthPercent+"%";
     }
 </script>
 </body>

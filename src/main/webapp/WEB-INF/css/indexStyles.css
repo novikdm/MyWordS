@@ -19,7 +19,7 @@ header{
 footer{
     text-align: center;
     position: fixed;
-    left: 0; bottom: 0;
+    left: 0; bottom: -25px;
     padding: 10px;
 }
 #header{
@@ -55,12 +55,15 @@ form{
     pading: 0;
 }
 input {
-    border : 1px solid lightgrey;
     margin: 1px;
     font-size: 1rem;
+    border : 1px solid lightgrey;
+}
+input:focus, input:active{
+    outline: none;
 }
 #trueCounter, #falseCounter {
-    width: 50%;
+    /*width: 50%;*/
     border: 0px;
     margin: 0;
 }
