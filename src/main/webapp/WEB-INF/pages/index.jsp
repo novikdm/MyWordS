@@ -59,15 +59,15 @@
         sessionStorage.setItem('False', '0');
     }
     sessionStorage.setItem('Step', '0');
-    var arrayOfWords = ${arrayWord};
+    let arrayOfWords = ${arrayWord};
     let size = arrayOfWords.length;
     document.getElementById('trueCounter').setAttribute(
         'value',
-        'True ' + sessionStorage.getItem('True')
+        sessionStorage.getItem('True')
     );
     document.getElementById("falseCounter").setAttribute(
         'value',
-        sessionStorage.getItem('False') + ' False'
+        sessionStorage.getItem('False')
     );
     changeWidth()
     document.getElementById("checkedtext").setAttribute("value", arrayOfWords[0].word);
@@ -119,7 +119,7 @@
             sessionStorage.setItem('True', x);
             document.getElementById('trueCounter').setAttribute(
                 'value',
-                'True ' + sessionStorage.getItem('True')
+                sessionStorage.getItem('True')
             );
         }
         else{
@@ -128,7 +128,7 @@
             sessionStorage.setItem('False', x);
             document.getElementById("falseCounter").setAttribute(
                 'value',
-                sessionStorage.getItem('False') + ' False'
+                sessionStorage.getItem('False')
             );
         }
     }

@@ -17,24 +17,37 @@
 </head>
 <body>
 <header>
-    <div class="header">Profile</div>
-    <div><a href="/" methods="get">MyWordS</a></div>
-    <br>
-    <div id="headerlink"><a id="addword" href="/AddNewWord" methods="get">Add New Word</a></div>
-</header>
-<hr>
-<div id="addform">
-    <form action="/AddNewWord" method="post">
-        <input type="text" id="word" name="word" placeholder="Word" required><br>
-        <input type="text" id="translate1" name="translate1" placeholder="Translate" required><br>
-        <input type="text" id="translate2" name="translate2" placeholder="Alternative translate" disabled><br>
-        <br>
-        <div id="submitContainer">
-            <input id="button" type="submit">
+    <div id="header">
+        <div id="logo">
+            <a href="/" methods="get">MyWordS</a>
         </div>
+        <div id="headerlink">
+            <a id="addword" href="/AddNewWord" methods="get">Add New Word</a>
+        </div>
+    </div>
+</header>
+<div class="page">
+    <div id="content-wrapper">
+        <div class="content">
+            <div id="addform">
+                <form action="/AddNewWord" method="post">
+                    <input type="text" id="word" name="word" placeholder="Word" required><br>
+                    <input type="text" id="translate1" name="translate1" placeholder="Translate" required><br>
+                    <input type="text" id="translate2" name="translate2" placeholder="Alternative translate" disabled><br>
+                    <br>
+                    <div id="submitContainer">
+                        <input id="button" type="submit">
+                    </div>
 
-    </form>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<footer>
+    <div>ⒸNovik 2019
+    </div>
+</footer>
 <script>
     function act(event){
         if(document.getElementById("translate1").value.length >= 1){

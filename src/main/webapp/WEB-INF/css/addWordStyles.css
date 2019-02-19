@@ -1,33 +1,67 @@
-input {
-    border : 1px solid lightgrey;
-    margin: 1px;
-    padding: 2px;
+*{
+    margin: 0;
 }
-.header{
+body{
+    font-family: Arial;
+    margin-top: -5px;
+}
+header, footer{
+    width: 100%;
+    height: 50px;
+    font-size: 1.2rem;
+    background: darkgrey;
+
+}
+header{
+    margin: 0;
+    /*padding: 5px;*/
+}
+footer{
+    text-align: center;
+    position: fixed;
+    left: 0; bottom: -25px;
+    padding: 10px;
+}
+#header{
+    margin-bottom: 5px;
+    padding: 15px;
+}
+#logo{
     width: 49%;
     float: left;
 }
 #headerlink{
-    width: 110px;
-    background: #fafafa;
+    width: 49%;
+    float: right;
+    text-align: right;
 }
 a{
     display: block;
     text-decoration: none;
-    width: 110px;
+}
+.page{
+    margin-top: 5px;
+}
+#content-wrapper{
+    margin: 0 auto;
 }
 #addform {
     width: 200px;
     text-align: center;
+    margin: 0 auto;
     background: #fafafa;
 }
-#submitContainer {
-    border: 0px;
-    margin: 0;
+form{
+    pading: 0;
 }
-#word, #translate1, #translate2 {
+input {
+    margin: 1px;
+    font-size: 1rem;
+    border : 1px solid lightgrey;
     height: 30px;
+    text-align: center;
 }
-#translate2{
+input:focus, input:active{
+    outline: none;
+}
 
-}

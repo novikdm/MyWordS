@@ -63,7 +63,6 @@ input:focus, input:active{
     outline: none;
 }
 #trueCounter, #falseCounter {
-    /*width: 50%;*/
     border: 0px;
     margin: 0;
 }
