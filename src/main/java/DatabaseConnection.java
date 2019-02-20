@@ -9,7 +9,7 @@ import java.util.Map;
 public class DatabaseConnection {
     private String url = "jdbc:mysql://localhost:3306/testddb?useSSL=false";
     private String login = "root";
-    private  String password = "root";
+    private  String password = "1234";
     private Connection connection;
 
     public DatabaseConnection() throws SQLException, ClassNotFoundException {

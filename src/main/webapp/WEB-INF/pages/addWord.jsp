@@ -19,10 +19,10 @@
 <header>
     <div id="header">
         <div id="logo">
-            <a href="/" methods="get">MyWordS</a>
+            <a href="${pageContext.request.contextPath}/" methods="get">MyWordS</a>
         </div>
         <div id="headerlink">
-            <a id="addword" href="/AddNewWord" methods="get">Add New Word</a>
+            <a id="addword" href="${pageContext.request.contextPath}/AddNewWord" methods="get">Add New Word</a>
         </div>
     </div>
 </header>
@@ -30,7 +30,7 @@
     <div id="content-wrapper">
         <div class="content">
             <div id="addform">
-                <form action="/AddNewWord" method="post">
+                <form action="${pageContext.request.contextPath}/AddNewWord" method="post">
                     <input type="text" id="word" name="word" placeholder="Word" required><br>
                     <input type="text" id="translate1" name="translate1" placeholder="Translate" required><br>
                     <input type="text" id="translate2" name="translate2" placeholder="Alternative translate" disabled><br>

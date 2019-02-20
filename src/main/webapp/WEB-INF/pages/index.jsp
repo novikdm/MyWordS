@@ -21,10 +21,10 @@
 <header>
     <div id="header">
         <div id="logo">
-            <a href="/" methods="get">MyWordS</a>
+            <a href="${pageContext.request.contextPath}/" methods="get">MyWordS</a>
         </div>
         <div id="headerlink">
-            <a id="addword" href="/AddNewWord" methods="get">Add New Word</a>
+            <a id="addword" href="${pageContext.request.contextPath}/AddNewWord" methods="get">Add New Word</a>
         </div>
     </div>
 </header>
@@ -34,7 +34,7 @@
             <div id="check">
                 <input type="text" id="trueCounter" readonly>
                 <input type="text" id="falseCounter" readonly>
-                <form action="/" method="get">
+                <form action="${pageContext.request.contextPath}/" method="get">
                     <input type="text" id="checkedtext" readonly><br>
                     <input type="text" id="checkedtranslate" readonly><br>
                     <div id="trueContainer">
