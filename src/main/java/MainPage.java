@@ -23,7 +23,7 @@ public class MainPage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(3);
+        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
         JSONArray jsonArrayOfWords = new JSONArray();
         for (WordAndTranslate wt:
                 listOfWords) {

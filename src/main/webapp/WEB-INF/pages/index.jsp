@@ -81,10 +81,10 @@
             sessionStorage.setItem('Step', step);
             changeInputs(step);
         }
+        changeWidth();
         if(step===(size)){
             changeButton('true');
         }
-        changeWidth();
     }
     document.getElementById("false").onclick = function(){
         let step = + sessionStorage.getItem('Step');
@@ -94,23 +94,16 @@
             sessionStorage.setItem('Step', step);
             changeInputs(step);
         }
+        changeWidth();
         if(step===(size)){
             changeButton('false');
         }
-        changeWidth();
     }
     //-----------------------------------------------------------------------
     function changeButton(trueOrFalse) {
         let tr = document.getElementById(trueOrFalse);
-        let el = document.createElement('input');
-        let str = trueOrFalse==="true" ? 'True' : 'False';
-        let id = trueOrFalse + "Container";
-        el.setAttribute('type', 'submit');
-        el.setAttribute('value',  str);
-        el.setAttribute('id', trueOrFalse);
-        document.getElementById(id).appendChild(el);
-        tr.remove();
-        el.click();
+        tr.setAttribute('type', 'submit');
+        tr.click();
     }
     function changeSessionStorage(rezultOfCheck) {
         if(rezultOfCheck){
