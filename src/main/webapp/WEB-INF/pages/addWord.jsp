@@ -12,6 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style><%@include file="/WEB-INF/css/addWordStyles.css"%></style>
     <title>MyWordS - Your own vocabulary trainer</title>
 </head>

@@ -12,6 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%--<c:set var="context" value="${pageContext.request.contextPath}" />--%>
     <%--<link rel="stylesheet" type="text/css" href="${context}/css/styles.css"/>--%>
     <style><%@include file="/WEB-INF/css/indexStyles.css"%></style>
@@ -152,7 +153,10 @@
     }
     function changeWidth() {
         let trueCount = + sessionStorage.getItem('True');
+        // trueCount = trueCount >= 0 ? trueCount : 0;
         let falseCount = + sessionStorage.getItem('False');
+        console.log(falseCount);
+        // falseCount = falseCount >= 0 ? falseCount : 0;
         let trueWidthPercent;
         let falseWidthPercent;
         if(trueCount !== 0 && falseCount !== 0){
@@ -160,10 +164,21 @@
             trueWidthPercent = ((trueCount*100)/hundredPercent).toFixed();
             falseWidthPercent = 100 - trueWidthPercent;
         }
-        else{
-            trueWidthPercent = 50;
-            falseWidthPercent = 50;
-        }
+        else
+            if(trueCount > 0 && falseCount == 0){
+                trueWidthPercent = 100;
+                falseWidthPercent = 0;
+            }
+            else
+                if(falseCount > 0 && trueCount == 0){
+                    trueWidthPercent = 0;
+                    falseWidthPercent = 100;
+                }
+                else{
+                    trueWidthPercent = 50;
+                    falseWidthPercent = 50;
+                }
+
         document.getElementById('trueCounter').style.width = trueWidthPercent+"%";
         document.getElementById('falseCounter').style.width = falseWidthPercent+"%";
     }

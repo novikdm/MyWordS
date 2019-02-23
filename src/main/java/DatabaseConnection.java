@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DatabaseConnection {
-    private String url = "jdbc:mysql://localhost:3306/testddb?useSSL=false";
+    private String url = "jdbc:mysql://localhost:3306/testddb?useUnicode=true&characterEncoding=UTF-8";
     private String login = "root";
     private  String password = "1234";
     private Connection connection;
