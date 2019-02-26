@@ -23,13 +23,18 @@ public class MainPage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
         JSONArray jsonArrayOfWords = new JSONArray();
-        for (WordAndTranslate wt:
-                listOfWords) {
-            JSONObject obj = new JSONObject(wt);
+        try{
+            ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
+            for (WordAndTranslate wt:
+                    listOfWords) {
+                JSONObject obj = new JSONObject(wt);
 
-            jsonArrayOfWords.put(obj);
+                jsonArrayOfWords.put(obj);
+            }
+        }
+        catch (NullPointerException e){
+            jsonArrayOfWords.put("NullPointerException");
         }
         request.setAttribute("arrayWord", jsonArrayOfWords);
 
