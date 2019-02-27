@@ -10,6 +10,7 @@ public class DatabaseConnection {
     private String url = "jdbc:mysql://localhost:3306/testddb?useUnicode=true&characterEncoding=UTF-8";
     private String login = "root";
     private  String password = "1234";
+
     private Connection connection;
 
     public DatabaseConnection() throws SQLException, ClassNotFoundException {
@@ -39,6 +40,9 @@ public class DatabaseConnection {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("------------------");
+            System.out.println("Exception in getWord in DatabaseConnection");
+            System.out.println(e);
         }
         return wordList.size()==1 ? wordList.get(0) : null;
     }
@@ -78,6 +82,9 @@ public class DatabaseConnection {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("------------------");
+            System.out.println("Exception in newWord in DatabaseConnection");
+            System.out.println(e);
         }
         return list;
     }
@@ -106,6 +113,9 @@ public class DatabaseConnection {
         }
         catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("------------------");
+            System.out.println("Exception in getNewTenWordsForCheck in DatabaseConnection");
+            System.out.println(e);
         }
         if(!wordArray.isEmpty()){
             newTenWordsForCheck = new ArrayList<WordAndTranslate>();
@@ -148,7 +158,9 @@ public class DatabaseConnection {
                 result = "Word: " + engWord + " save successfully!";
             }
             catch (SQLException e){
-                System.out.println("Error in SaveNewWord method");
+                System.out.println("------------------");
+                System.out.println("Exception in saveNewWord in DatabaseConnection");
+                System.out.println(e);
             }
         }
         else{

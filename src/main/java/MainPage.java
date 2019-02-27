@@ -22,7 +22,6 @@ public class MainPage extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
         JSONArray jsonArrayOfWords = new JSONArray();
         try{
             ArrayList<WordAndTranslate> listOfWords = databaseConnection.getNewTenWordsForCheck(10);
@@ -34,7 +33,14 @@ public class MainPage extends HttpServlet {
             }
         }
         catch (NullPointerException e){
-            jsonArrayOfWords.put("NullPointerException");
+            JSONObject ExceptionObj = new JSONObject(e);
+            request.setAttribute("exception", ExceptionObj);
+            System.out.println("Exception in MainPage servlet");
+            System.out.println(e);
+        }
+        catch (Exception e){
+            System.out.println("Exception in MainPage servlet - NOT NullPointerException");
+            System.out.println(e);
         }
         request.setAttribute("arrayWord", jsonArrayOfWords);
 

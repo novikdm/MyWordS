@@ -55,6 +55,7 @@
 </footer>
 
 <script>
+    console.log(${exception});
     if(sessionStorage.getItem('True')==null && sessionStorage.getItem('false')==null){
         sessionStorage.setItem('True', '0');
         sessionStorage.setItem('False', '0');
@@ -153,10 +154,7 @@
     }
     function changeWidth() {
         let trueCount = + sessionStorage.getItem('True');
-        // trueCount = trueCount >= 0 ? trueCount : 0;
         let falseCount = + sessionStorage.getItem('False');
-        console.log(falseCount);
-        // falseCount = falseCount >= 0 ? falseCount : 0;
         let trueWidthPercent;
         let falseWidthPercent;
         if(trueCount !== 0 && falseCount !== 0){
