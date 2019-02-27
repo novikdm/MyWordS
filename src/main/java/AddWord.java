@@ -29,9 +29,6 @@ public class AddWord extends HttpServlet {
         String word = request.getParameter("word");
         String translate1 = request.getParameter("translate1");
         String translate2 = request.getParameter("translate2");
-        System.out.println("-----------NOVIK-------------");
-        System.out.println(translate1);
-        System.out.println("-----------DMITRO------------");
         try{
              translate2 = translate2.length()>0 ? translate2 : null;
         }
