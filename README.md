@@ -9,6 +9,7 @@ In this project i used next technologies and tools:
   - HTML
   - CSS
   - JSP
+  - JSON
   - Maven
   - Tomcat
   - Java Servlet
