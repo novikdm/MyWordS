@@ -30,6 +30,14 @@
         <servlet-name>AddNewWord</servlet-name>
         <url-pattern>/AddNewWord</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Calculator</servlet-name>
+        <servlet-class>Calculator</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Calculator</servlet-name>
+        <url-pattern>/Calculator/calc.html</url-pattern>
+    </servlet-mapping>
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
